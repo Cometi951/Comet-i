@@ -1,10 +1,8 @@
-# Comet-i
-Create Easy way android app by using it
+# Create Easy way android apps by using Comet-i
 
+##  5  simple steps to use it
 
-
-
-### project lavel Gradle
+1. add mave into project lavel Gradle
 ```
 allprojects {
     repositories {
@@ -13,22 +11,15 @@ allprojects {
         }
     }
 }
-
 ```
 
-### app lavel Gradle
+2. add dependency into app lavel Gradle
 ```
 implementation 'com.github.Cometi951:Comet-i:1.0.0'
 ```
-
-
-
-
-
-# Necessary steps
-  1. extends your Activity With BaseActivity 
-  2. implement methods SetActivity(), onClick()
-  3. return (this) in SetActivity method.
+3. extends your Activitys With BaseActivity 
+4. implement methods SetActivity(), onClick()
+5. return (this) in SetActivity method.
   
 ```
 public class MainActivity extends BaseActivity {
@@ -51,6 +42,9 @@ public class MainActivity extends BaseActivity {
     
 }  
 ```
+# once you done those above steps, after you can use all features of this library. you can decrease lines of code into only 1 single line. you can replace your code by following below Examples.
+
+
 
 
 ## Toast
@@ -120,23 +114,23 @@ StartActivity(NextActivity.class, RequestCode, new String[]{"String"}, new Objec
 
 
 
-Intent intent = new Intent(this, NextActivity.class);                                                             
-intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));                                   
-startActivity(intent);  
+Intent intent = new Intent(this, NextActivity.class);
+intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+startActivity(intent);
 ```
 StartActivityWithClearAll(NextActivity.class);
 ```
 
 
 
-  Intent intent = new Intent(this, NextActivity.class);                                                                                                                                                                                                                                                            
-  intent.putExtra("String", "name");                                                                                                                                                                                                                     
-  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));                                                                                                 
+  Intent intent = new Intent(this, NextActivity.class);                                                                                                   
+  intent.putExtra("String", "name");                                                                          
+  intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));                               
   startActivity(intent);
   
-````                                                                   
+```                                                                   
 StartActivityWithClearAll(NextActivity.class, new String[]{"String"}, new Object[]{"name"});
-````
+```
 
 
 
@@ -144,32 +138,90 @@ StartActivityWithClearAll(NextActivity.class, new String[]{"String"}, new Object
 
 
 
+## fragment
 
-FragmentTransaction transaction = getFragmentManager().beginTransaction();                                               
- FragmentTest fragment = new FragmentTest();                                                            
- transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());                                      
- transaction.addToBackStack(null);                                                                              
- transaction.commitAllowingStateLoss();                                                                           
+FragmentTransaction transaction = getFragmentManager().beginTransaction();
+ FragmentTest fragment = new FragmentTest();                                                                
+ transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());
+ transaction.addToBackStack(null);                                                                           
+ transaction.commitAllowingStateLoss();
 
 ```
 StartFragment(new FragmentTest(), R.id.frame);
 ```
 
- FragmentTransaction transaction = getFragmentManager().beginTransaction();                                            
- FragmentTest fragment = new FragmentTest();                                                                         
- fragment.setArguments(bundle);                                                                                       
- transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());                                        
- transaction.addToBackStack(null);                                                                         
- transaction.commitAllowingStateLoss();                                     
+ FragmentTransaction transaction = getFragmentManager().beginTransaction();
+ FragmentTest fragment = new FragmentTest();                                                                           
+ fragment.setArguments(bundle);                                                                                   
+ transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());                                    
+ transaction.addToBackStack(null);                                                                                 
+ transaction.commitAllowingStateLoss();                                                                              
 
 ```
 StartFragment(new FragmentTest(), R.id.frame, bundle);
 ```
 
 
+## getIntent
+String s = getIntent().getStringExtra(“StringKey”);                                                              
+```
+String s = GetIntent(“StringKey”);
+```
+Bundle bundle = getIntent().getBundleExtra(“BundleKey”);                                                              
+```
+Bundle bundle = GetIntent(“BundleKey”);
+```
+Int I = getIntent().getIntExtra(“Key” , defaultValue);                                                               
+```
+Int I = GetIntent(“Key”, defaultValue);
+```
+Boolean b = getIntent().getBooleanExtra(“Key”, defaultValue);                                                           
+
+```
+Boolean b = GetIntent(“Key”, defaultValue);
+```
 
 
 
+ArrayList<MyClass> list = (ArrayList<MyClass>) getIntent().getExtras().getSerializable("myClassList");                
+```
+ArrayList<MyClass> list = GetIntent(“myClassList”);
+```
+    
+MyClass dene = (MyClass )getIntent().getSerializableExtra("myClass");                                            
+```
+MyClass class = GetIntent(“myClass”);
+```
 
 
+## RecyclerView
 
+#### set recyclerview Vertical
+recyclerView = findViewById(R.id.recycler);                                                                
+LinearLayoutManager layoutManager = new LinearLayoutManager(this);                                                  
+recyclerView.setLayoutManager(layoutManager);                                                                       
+recyclerView.setHasFixedSize(true);                                                                                
+
+```
+recyclerView = RecyclerViewVertical(recyclerView, R.id.recycler);
+```
+
+#### set recyclerview Horizontal
+recyclerView = findViewById(R.id.recycler);                                                                    
+LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);                  
+recyclerView.setLayoutManager(layoutManager);                                                                      
+recyclerView.setHasFixedSize(true);                                                                                
+
+```
+recyclerView = RecyclerViewHorizontal(recyclerView, R.id.recycler);
+```
+
+#### set recyclerview Grid
+recyclerView = findViewById(R.id.recycler);                                                                      
+recyclerView.setLayoutManager(new GridLayoutManager(activity, spanCount));                                              
+recyclerView.setHasFixedSize(true);                                                                               
+
+
+```
+recyclerView = RecyclerViewGrid(recyclerView , R.id.recycler, spanCount);
+```
