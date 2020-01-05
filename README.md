@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
     
 }  
 ```
-# once you done those above steps, after you can use all features of this library. you can decrease lines of code into only 1 single line. you can replace your code by following below Examples.
+# once you done above steps, after you can use all features of this library. you can decrease lines of code into only 1 single line. you can replace your code by following below Examples.
 
 
 
