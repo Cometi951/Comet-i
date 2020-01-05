@@ -113,7 +113,7 @@ StartActivity(NextActivity.class, RequestCode, new String[]{"String"}, new Objec
 
 
 
-Intent intent = new Intent(this, NextActivity.class);
+Intent intent = new Intent(this, NextActivity.class);                                                            
 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 startActivity(intent);
 ```
