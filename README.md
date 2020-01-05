@@ -79,7 +79,6 @@ StartActivity("https://www.example.com/");
   startActivity(intent);
   
 ```
-                                                  |---------Keys---------|                       |-----Values-----|
 StartActivity(NextActivity.class, new String[]{"String","int","float","boolean"}, new Object[]{"name", 0, 0.0f, false});
 ```
 
@@ -140,21 +139,21 @@ StartActivityWithClearAll(NextActivity.class, new String[]{"String"}, new Object
 
 ## fragment
 
-FragmentTransaction transaction = getFragmentManager().beginTransaction();
- FragmentTest fragment = new FragmentTest();                                                                
- transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());
- transaction.addToBackStack(null);                                                                           
+FragmentTransaction transaction = getFragmentManager().beginTransaction();                                               
+ FragmentTest fragment = new FragmentTest();                                                                                 
+ transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());                                           
+ transaction.addToBackStack(null);                                                                                        
  transaction.commitAllowingStateLoss();
 
 ```
 StartFragment(new FragmentTest(), R.id.frame);
 ```
 
- FragmentTransaction transaction = getFragmentManager().beginTransaction();
- FragmentTest fragment = new FragmentTest();                                                                           
- fragment.setArguments(bundle);                                                                                   
- transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());                                    
- transaction.addToBackStack(null);                                                                                 
+ FragmentTransaction transaction = getFragmentManager().beginTransaction();                                      
+ FragmentTest fragment = new FragmentTest();                                                                               
+ fragment.setArguments(bundle);                                                                                         
+ transaction.replace(R.id.frame, fragment, fragment.getClass().getSimpleName());                                   
+ transaction.addToBackStack(null);                                                                                     
  transaction.commitAllowingStateLoss();                                                                              
 
 ```
@@ -196,7 +195,7 @@ MyClass class = GetIntent(“myClass”);
 
 ## RecyclerView
 
-#### set recyclerview Vertical
+####  Vertical
 recyclerView = findViewById(R.id.recycler);                                                                
 LinearLayoutManager layoutManager = new LinearLayoutManager(this);                                                  
 recyclerView.setLayoutManager(layoutManager);                                                                       
@@ -206,7 +205,7 @@ recyclerView.setHasFixedSize(true);
 recyclerView = RecyclerViewVertical(recyclerView, R.id.recycler);
 ```
 
-#### set recyclerview Horizontal
+####  Horizontal
 recyclerView = findViewById(R.id.recycler);                                                                    
 LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);                  
 recyclerView.setLayoutManager(layoutManager);                                                                      
@@ -216,7 +215,7 @@ recyclerView.setHasFixedSize(true);
 recyclerView = RecyclerViewHorizontal(recyclerView, R.id.recycler);
 ```
 
-#### set recyclerview Grid
+####  Grid
 recyclerView = findViewById(R.id.recycler);                                                                      
 recyclerView.setLayoutManager(new GridLayoutManager(activity, spanCount));                                              
 recyclerView.setHasFixedSize(true);                                                                               
