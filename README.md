@@ -258,7 +258,7 @@ editor.commit();
 ClearPreference();
 ```
 
-## most common variable context or activity which you don't have to declare and initialize on your activity, fragment, adapter. you just need to import activity variable that by default return your current exist activity. and never get null pointer exception from this activity.
+## most common variable context or activity which you don't have to declare and initialize on your activity, fragment, adapter. you just need to import activity variable that by default return your current exist activity. and you never get null pointer exception.
 
 ```
 import static com.android.comet.I.library.Utility.activity;
