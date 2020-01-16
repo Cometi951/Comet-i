@@ -243,7 +243,7 @@ SavePreference("key", "value");
 
 ####  Get Value
 SharedPreferences sharedpreferences = context.getSharedPreferences(YourPackageName, Context.MODE_PRIVATE);              
-String s = sharedpreferences.getInt("key");                                                                                                                                                                                                            
+String s = sharedpreferences.getString("key");                                                                                                                                                                                                            
 ```
 String s = GetPreferenceS("key");
 ```
