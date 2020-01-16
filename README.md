@@ -2,7 +2,7 @@
 
 ##  5  simple steps to use it
 
-1. add mave into project lavel Gradle
+1. add maven into project lavel Gradle
 ```
 allprojects {
     repositories {
@@ -42,7 +42,7 @@ public class MainActivity extends BaseActivity {
     
 }  
 ```
-# once you done above steps, after you can use all features of this library. you can decrease lines of code into only 1 single line. you can replace your code by following below Examples.
+# once you done above steps, after you can use all features of this library. decrease lines of code into only 1 single line and make your project lightweight. you can replace your code by following below Examples.
 
 
 
@@ -223,4 +223,45 @@ recyclerView.setHasFixedSize(true);
 
 ```
 recyclerView = RecyclerViewGrid(recyclerView , R.id.recycler, spanCount);
+```
+
+
+
+## Shared Preferences
+### by defalut generate one preference with your project package name. so you just need to call functions like below.
+
+
+####  Save Value
+SharedPreferences sharedpreferences = context.getSharedPreferences(YourPackageName, Context.MODE_PRIVATE);                 
+Editor editor = sharedpreferences.edit();                                                                 
+editor.putString("key", "value");                                                                                      
+editor.commit();
+                                  
+```
+SavePreference("key", "value");
+```
+
+####  Get Value
+SharedPreferences sharedpreferences = context.getSharedPreferences(YourPackageName, Context.MODE_PRIVATE);              
+String s = sharedpreferences.getInt("key");                                                                                                                                                                                                            
+```
+String s = GetPreferenceS("key");
+```
+
+
+####  Clear Preference 
+SharedPreferences sharedpreferences = context.getSharedPreferences(YourPackageName, Context.MODE_PRIVATE);                 
+Editor editor = sharedpreferences.edit();                                                                 
+editor.clear();                                                                                                           
+editor.commit();                                                                   
+```
+ClearPreference();
+```
+
+## most common variable context or activity which you don't have to declare and initialize on your activity, fragment, adapter. you just need to import activity variable that by default return your current exist activity. and never get null pointer exception from this activity.
+
+```
+import static com.android.comet.I.library.Utility.activity;
+
+funName(activity);
 ```
