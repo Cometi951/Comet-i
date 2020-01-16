@@ -228,7 +228,7 @@ recyclerView = RecyclerViewGrid(recyclerView , R.id.recycler, spanCount);
 
 
 ## Shared Preferences
-### by defalut generate one preference with your project package name. so you just need to call functions like below.
+### by default generate one preference with your project package name. so you just need to call functions like below.
 
 
 ####  Save Value
