@@ -1,8 +1,10 @@
 package com.android.comet.I.library;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -28,8 +30,14 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onRestart() {
+        super.onRestart();
+        init();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         init();
     }
 
@@ -40,7 +48,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         SetCurrentActivity(activity);
         if (constant == null) constant = new Constant();
         if (utility == null) utility = new Utility();
-        if (handler == null) handler = new Handler();
+        if (handler == null) handler = new Handler(Looper.getMainLooper());
         if (sharedPreferences == null)
             sharedPreferences = getSharedPreferences(getPackageName(), MODE_PRIVATE);
         if (sharedPreferencesEditor == null) {
@@ -48,50 +56,5 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             sharedPreferencesEditor.apply();
         }
     }
-
-    /*
-
-    protected void startActivity(Class aClass, int flags) {
-        startActivity(aClass, flags, -1, -1);
-    }
-
-
-
-    public void showProgressDialog() {
-        try {
-            pDialog = new ProgressDialog(activity);
-            pDialog.setMessage("Loading");
-            pDialog.setCancelable(false);
-            pDialog.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showProgressDialog(Context context, boolean isCancelable, String message) {
-        try {
-            pDialog = new ProgressDialog(context);
-            pDialog.setMessage(message);
-            pDialog.setCancelable(isCancelable);
-            pDialog.show();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean isLoading() {
-        if (pDialog != null)
-            if (pDialog.isShowing())
-                return true;
-            else
-                return false;
-        return false;
-    }
-
-    public void dismissProgressDialog() {
-        pDialog.dismiss();
-        pDialog.cancel();
-    }*/
-
 
 }

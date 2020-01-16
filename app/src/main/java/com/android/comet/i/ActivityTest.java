@@ -7,6 +7,7 @@ import android.view.View;
 import com.android.comet.I.library.BaseActivity;
 
 import static com.android.comet.I.library.Utility.GetIntent;
+import static com.android.comet.I.library.Utility.GetPreferenceS;
 import static com.android.comet.I.library.Utility.Toast;
 
 public class ActivityTest extends BaseActivity {
@@ -16,6 +17,8 @@ public class ActivityTest extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         Toast(GetIntent("int") + "");
+        GetPreferenceS("");
+
     }
 
     @Override

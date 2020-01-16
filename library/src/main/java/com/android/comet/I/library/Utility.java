@@ -5,7 +5,6 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -14,11 +13,7 @@ import android.os.Parcelable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.Toast;
-
-
-import com.bumptech.glide.Glide;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -48,35 +43,6 @@ public class Utility {
     }
 
 
-    // RecyclerView functions
-    public static RecyclerView RecyclerViewVertical(RecyclerView RecycleVertical, int RecyclerId) {
-        RecycleVertical = (RecyclerView) activity.findViewById(RecyclerId);
-        RecycleVertical.setLayoutManager(new LinearLayoutManager(activity));
-        RecycleVertical.setHasFixedSize(true);
-        return RecycleVertical;
-    }
-
-    public static RecyclerView RecyclerViewVertical(RecyclerView RecycleVertical, int RecyclerId, boolean reverseLayout) {
-        RecycleVertical = (RecyclerView) activity.findViewById(RecyclerId);
-        RecycleVertical.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, reverseLayout));
-        RecycleVertical.setHasFixedSize(true);
-        return RecycleVertical;
-    }
-
-    public static RecyclerView RecyclerViewHorizontal(RecyclerView RecycleHorizontal, int RecyclerId, boolean reverseLayout) {
-        RecycleHorizontal = (RecyclerView) activity.findViewById(RecyclerId);
-        RecycleHorizontal.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, reverseLayout));
-        RecycleHorizontal.setHasFixedSize(true);
-        return RecycleHorizontal;
-    }
-
-    public static RecyclerView RecyclerViewGrid(RecyclerView RecycleGrid, int RecyclerId, int ColumnCount) {
-        RecycleGrid = (RecyclerView) activity.findViewById(RecyclerId);
-        RecycleGrid.setLayoutManager(new GridLayoutManager(activity, ColumnCount));
-        RecycleGrid.setHasFixedSize(true);
-        return RecycleGrid;
-    }
-
 
     // StatusBar functions
     public static void StatusBarHide() {
@@ -87,6 +53,7 @@ public class Utility {
     public static void StatusTransparent() {
         activity.getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
+
 
 
     // Toast functions
@@ -109,45 +76,6 @@ public class Utility {
     }
 
 
-    // GetIntent functions
-    public static Object GetIntent(String Key) {
-        if (activity.getIntent() != null) {
-            if (activity.getIntent().getStringExtra(Key) != null) {
-                return activity.getIntent().getStringExtra(Key);
-            } else if (activity.getIntent().getStringArrayExtra(Key) != null) {
-                return activity.getIntent().getStringArrayExtra(Key);
-            } else if (activity.getIntent().getSerializableExtra(Key) != null) {
-                return activity.getIntent().getSerializableExtra(Key);
-            } else if (activity.getIntent().getIntArrayExtra(Key) != null) {
-                return activity.getIntent().getIntArrayExtra(Key);
-            } else if (activity.getIntent().getDoubleArrayExtra(Key) != null) {
-                return activity.getIntent().getDoubleArrayExtra(Key);
-            } else if (activity.getIntent().getFloatArrayExtra(Key) != null) {
-                return activity.getIntent().getFloatArrayExtra(Key);
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
-
-    public static boolean GetIntent(String Key, boolean defaultValue) {
-        return activity.getIntent().getBooleanExtra(Key, defaultValue);
-    }
-
-    public static int GetIntent(String Key, int defaultValue) {
-        return activity.getIntent().getIntExtra(Key, defaultValue);
-    }
-
-    public static float GetIntent(String Key, float defaultValue) {
-        return activity.getIntent().getFloatExtra(Key, defaultValue);
-    }
-
-    public static double GetIntent(String Key, double defaultValue) {
-        return activity.getIntent().getDoubleExtra(Key, defaultValue);
-    }
-
 
     // StartActivity functions
     public static void StartActivity(Class c) {
@@ -158,23 +86,8 @@ public class Utility {
         activity.startActivity(new Intent(Intent.ACTION_VIEW).setData(Uri.parse(URL)));
     }
 
-    public static void StartActivityWithClearAll(Class c) {
-        activity.startActivity(new Intent(activity, c).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-    }
-
-    public static void StartActivityWithClearAll(Class c, String[] Keys, Object[] Values) {
-        NeedToClearActivity = true;
-        StartActivity(c, Keys, Values);
-    }
-
-    public static void StartActivityForResult(Class c, int RequestCode) {
+    public static void StartActivity(Class c, int RequestCode) {
         activity.startActivityForResult(new Intent(activity, c), RequestCode);
-    }
-
-    public static void StartActivityForResult(Class c, int RequestCode, String[] Keys, Object[] Values) {
-        RequestCodes = RequestCode;
-        NeedToResultActivity = true;
-        StartActivity(c, Keys, Values);
     }
 
     public static void StartActivity(Class c, String[] Keys, Object[] Values) {
@@ -228,6 +141,22 @@ public class Utility {
         NeedToResultActivity = false;
     }
 
+    public static void StartActivity(Class c, int RequestCode, String[] Keys, Object[] Values) {
+        RequestCodes = RequestCode;
+        NeedToResultActivity = true;
+        StartActivity(c, Keys, Values);
+    }
+
+    public static void StartActivityWithClearAll(Class c) {
+        activity.startActivity(new Intent(activity, c).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+    }
+
+    public static void StartActivityWithClearAll(Class c, String[] Keys, Object[] Values) {
+        NeedToClearActivity = true;
+        StartActivity(c, Keys, Values);
+    }
+
+
 
     // StartFragment functions
     public static void StartFragment(Fragment fragment, int container) {
@@ -259,6 +188,88 @@ public class Utility {
         transaction.addToBackStack(null);
         transaction.commitAllowingStateLoss();
     }
+
+
+
+    // GetIntent functions
+    public static Object GetIntent(String Key) {
+        if (activity.getIntent() != null) {
+            if (activity.getIntent().getStringExtra(Key) != null) {
+                return activity.getIntent().getStringExtra(Key);
+            } else if (activity.getIntent().getStringArrayExtra(Key) != null) {
+                return activity.getIntent().getStringArrayExtra(Key);
+            } else if (activity.getIntent().getSerializableExtra(Key) != null) {
+                return activity.getIntent().getSerializableExtra(Key);
+            } else if (activity.getIntent().getIntArrayExtra(Key) != null) {
+                return activity.getIntent().getIntArrayExtra(Key);
+            } else if (activity.getIntent().getDoubleArrayExtra(Key) != null) {
+                return activity.getIntent().getDoubleArrayExtra(Key);
+            } else if (activity.getIntent().getFloatArrayExtra(Key) != null) {
+                return activity.getIntent().getFloatArrayExtra(Key);
+            } else if (activity.getIntent().getBundleExtra(Key) != null) {
+                return activity.getIntent().getBundleExtra(Key);
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+
+    public static boolean GetIntent(String Key, boolean defaultValue) {
+        return activity.getIntent().getBooleanExtra(Key, defaultValue);
+    }
+
+    public static int GetIntent(String Key, int defaultValue) {
+        return activity.getIntent().getIntExtra(Key, defaultValue);
+    }
+
+    public static float GetIntent(String Key, float defaultValue) {
+        return activity.getIntent().getFloatExtra(Key, defaultValue);
+    }
+
+    public static double GetIntent(String Key, double defaultValue) {
+        return activity.getIntent().getDoubleExtra(Key, defaultValue);
+    }
+
+
+
+    // RecyclerView functions
+    public static RecyclerView RecyclerViewVertical(RecyclerView RecycleVertical, int RecyclerId) {
+        RecycleVertical = (RecyclerView) activity.findViewById(RecyclerId);
+        RecycleVertical.setLayoutManager(new LinearLayoutManager(activity));
+        RecycleVertical.setHasFixedSize(true);
+        return RecycleVertical;
+    }
+
+    public static RecyclerView RecyclerViewHorizontal(RecyclerView RecycleHorizontal, int RecyclerId) {
+        RecycleHorizontal = (RecyclerView) activity.findViewById(RecyclerId);
+        RecycleHorizontal.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false));
+        RecycleHorizontal.setHasFixedSize(true);
+        return RecycleHorizontal;
+    }
+
+    public static RecyclerView RecyclerViewVertical(RecyclerView RecycleVertical, int RecyclerId, boolean reverseLayout) {
+        RecycleVertical = (RecyclerView) activity.findViewById(RecyclerId);
+        RecycleVertical.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, reverseLayout));
+        RecycleVertical.setHasFixedSize(true);
+        return RecycleVertical;
+    }
+
+    public static RecyclerView RecyclerViewHorizontal(RecyclerView RecycleHorizontal, int RecyclerId, boolean reverseLayout) {
+        RecycleHorizontal = (RecyclerView) activity.findViewById(RecyclerId);
+        RecycleHorizontal.setLayoutManager(new LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, reverseLayout));
+        RecycleHorizontal.setHasFixedSize(true);
+        return RecycleHorizontal;
+    }
+
+    public static RecyclerView RecyclerViewGrid(RecyclerView RecycleGrid, int RecyclerId, int ColumnCount) {
+        RecycleGrid = (RecyclerView) activity.findViewById(RecyclerId);
+        RecycleGrid.setLayoutManager(new GridLayoutManager(activity, ColumnCount));
+        RecycleGrid.setHasFixedSize(true);
+        return RecycleGrid;
+    }
+
 
 
     // SharedPreferences functions
@@ -307,6 +318,7 @@ public class Utility {
     }
 
 
+
     // Check Network
     public static boolean InternetAvailable() {
         boolean haveConnectedWifi = false;
@@ -324,10 +336,5 @@ public class Utility {
         return haveConnectedWifi || haveConnectedMobile;
     }
 
-
-    // image functions
-    public static void LoadImage(String Url, ImageView into) {
-        Glide.with(activity).load(Url).into(into);
-    }
 
 }
