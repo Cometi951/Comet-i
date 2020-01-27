@@ -9,11 +9,7 @@ import android.widget.FrameLayout;
 import com.android.comet.I.library.BaseActivity;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
-
-import static com.android.comet.I.library.Utility.StartActivity;
 import static com.android.comet.I.library.Utility.StartFragment;
-import static com.android.comet.I.library.Utility.Toast;
 
 public class MainActivity extends BaseActivity {
 

@@ -3,6 +3,8 @@ package com.android.comet.I.library;
 import android.content.SharedPreferences;
 import android.os.Handler;
 
+// Created by Milan Vadgama :)
+
 public class Constant {
 
     public static Constant constant;

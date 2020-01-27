@@ -18,6 +18,8 @@ import static com.android.comet.I.library.Constant.sharedPreferencesEditor;
 import static com.android.comet.I.library.Constant.utility;
 import static com.android.comet.I.library.Utility.SetCurrentActivity;
 
+// Created by Milan Vadgama :)
+
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener {
 
     public RecyclerView recyclerView;
@@ -30,8 +32,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onResume() {
+        super.onResume();
         init();
     }
 
