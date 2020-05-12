@@ -15,7 +15,7 @@ allprojects {
 
 2. add dependency into app lavel Gradle
 ```
-implementation 'com.github.Cometi951:Comet-i:1.0.0'
+implementation 'com.github.Cometi951:Comet-i:1.0.1'
 ```
 3. extends your Activitys With BaseActivity 
 4. implement methods SetActivity(), onClick()
